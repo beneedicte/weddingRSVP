@@ -632,6 +632,20 @@ body.locked .site,body.letter-opening .site{animation:none;opacity:1;visibility:
  .wax-stage{flex-shrink:0}
  .envelope-front-pocket{clip-path:polygon(0 33%,50% 58%,100% 33%,100% 100%,0 100%)}
 }
+.photo-gallery-inner{width:100%;max-width:1060px;margin:0 auto}
+.wedding-slideshow{margin:30px auto 0;max-width:960px}
+.slideshow-stage{height:clamp(320px,65vh,700px);background:#e9eade;border-radius:12px;overflow:hidden;box-shadow:0 14px 35px #33463815}
+.slideshow-stage img{display:block;width:100%;height:100%;object-fit:contain}
+.slideshow-controls{display:flex;justify-content:center;align-items:center;gap:14px;flex-wrap:wrap;padding:20px 0 0;color:var(--pine);font:12px var(--sans)}
+.slideshow-controls button{border:1px solid #7e876c55;background:#f1f3e9;color:var(--pine);min-height:44px;min-width:44px;padding:10px 14px;border-radius:24px;font:500 12px var(--sans)}
+.slideshow-controls button:hover{background:#e3e8d8}
+#slideCounter{font-variant-numeric:tabular-nums;min-width:52px;text-align:center}
+.slideshow-status{font:12px/1.6 var(--sans);color:#777c6c;text-align:center;min-height:20px;margin:10px 0 0}
+@media(max-width:480px){.slideshow-stage{height:460px;max-height:65svh}.slideshow-controls{gap:8px}.slideshow-controls button{padding-inline:12px}}
+/* Automatic photo homepage, with no gallery heading or controls. */
+.home-photo .home-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 65%;opacity:0;transition:opacity .55s ease}
+.home-photo .home-slide.is-visible{opacity:1}
+@media(prefers-reduced-motion:reduce){.home-photo .home-slide{transition:none}}
 </style>
 </head>
 <body class="locked">
@@ -660,7 +674,7 @@ body.locked .site,body.letter-opening .site{animation:none;opacity:1;visibility:
 </div>
 <div class="site paper" id="invitation">
 <header class="hero photo-home" id="top">
-  <picture class="home-photo"><source media="(max-width: 650px)" srcset="images/DSC09265.jpg"><img src="images/DSC09310.jpg" alt="Bénédicte and Larry holding hands beneath an ornate pavilion" width="1600" height="1067" fetchpriority="high"></picture>
+  <div class="home-photo" aria-label="Wedding photo slideshow"><img id="homeSlideA" class="home-slide is-visible" src="images/slideshow/DSC09310.jpg" alt="Bénédicte and Larry" width="1600" height="1067" fetchpriority="high"><img id="homeSlideB" class="home-slide" alt="" aria-hidden="true" decoding="async"></div>
   <div class="home-copy" tabindex="-1"><p class="hero-kicker">Together with our families, we are delighted to invite you to our wedding.</p><h1><span>Bénédicte</span><em>&amp;</em><span>Larry</span></h1><p class="hero-date">24 · 07 · 2027</p></div>
   <button class="vinyl-button" id="musicToggle" type="button" aria-pressed="false" aria-label="Play our wedding soundtrack" aria-expanded="false" aria-controls="weddingMusic"><span class="vinyl-disc" aria-hidden="true"><span>Click<br>to play</span></span><span class="vinyl-caption">Click to play music<br><strong id="selectedSongLabel">Play a song</strong></span></button>
   <aside class="music-panel" id="weddingMusic" aria-label="Wedding soundtrack" hidden><div class="music-panel-heading"><span id="musicTitle">Our soundtrack</span><button id="closeMusic" type="button" aria-label="Close music player and stop playback">×</button></div><audio id="weddingAudio" controls preload="none"></audio><p id="musicStatus" role="status" aria-live="polite"></p></aside>
@@ -670,7 +684,7 @@ body.locked .site,body.letter-opening .site{animation:none;opacity:1;visibility:
 <main>
 
 <section class="section pale" id="details"><div class="section-inner">
-  <div class="ornament">❦</div><p class="eyebrow">Join us</p><h2 class="section-title">Ceremony &amp; Reception</h2>
+  <div class="ornament">❦</div><h2 class="section-title">Ceremony &amp; Reception</h2>
   <p class="section-subtitle">Our religious ceremony and wedding reception will both take place at the same beautiful venue.</p>
   <div class="mini-grid wedding-venues one-location"><article class="info-card location-card">
     <span class="card-tag">One beautiful location</span><h3>La Ferme Bertinchamps d’Ophain</h3>
@@ -681,7 +695,7 @@ body.locked .site,body.letter-opening .site{animation:none;opacity:1;visibility:
   <div style="text-align:center;margin-top:22px"><button class="btn outline" type="button" id="calendar">Add to Calendar</button></div>
 </div></section>
 <section class="section white" id="schedule"><div class="section-inner">
-  <div class="ornament">✽</div><p class="eyebrow">Saturday, 24 July 2027</p><h2 class="section-title">Wedding Day Schedule</h2>
+  <div class="ornament">✽</div><h2 class="section-title">Wedding Day Schedule</h2>
   <p class="section-subtitle">From the ceremony to the dance floor, here is the day we look forward to sharing with you.</p>
   <div class="timetable" aria-label="Wedding day itinerary">
     <div class="timeline-item"><div class="timeline-symbol"><svg class="event-line-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M24 3v9m-4-5h8M14 23l10-12 10 12v21H14ZM5 44V29l9-7m29 22V29l-9-7M2 44h44M20 44V33a4 4 0 0 1 8 0v11M21 23a3 3 0 1 0 6 0 3 3 0 0 0-6 0ZM8 34v5m32-5v5"/></svg></div><div class="timeline-content"><time class="tag" datetime="2027-07-24T14:30:00+02:00">14:30</time><h3>Religious ceremony</h3></div></div>
@@ -695,8 +709,9 @@ body.locked .site,body.letter-opening .site{animation:none;opacity:1;visibility:
   </div>
   <div style="text-align:center;margin-top:18px"><a class="btn" href="#rsvp">RSVP Now ♡</a></div>
 </div></section>
+
 <section class="section blush" id="dresscode"><div class="section-inner">
-  <div class="ornament">✿</div><p class="eyebrow">Our wedding aesthetic</p><h2 class="section-title">Colours &amp; Atmosphere</h2>
+  <div class="ornament">✿</div><h2 class="section-title">Colours &amp; Atmosphere</h2>
   <p class="section-subtitle">Soft peach and blush flowers, sage green, touches of gold and the warm glow of candlelight.</p>
   <div class="swatches" aria-label="Terracotta, dusty rose, peach, butter yellow, sage, mist blue"><span class="swatch"></span><span class="swatch"></span><span class="swatch"></span><span class="swatch"></span><span class="swatch"></span><span class="swatch"></span></div>
   <p class="small-note"><strong>Dress code:</strong>These are our wedding decoration colours, not a required dress code for guests.</p>
@@ -713,7 +728,7 @@ body.locked .site,body.letter-opening .site{animation:none;opacity:1;visibility:
   </article>
 </div></section>
 <section class="section blush" id="rsvp"><div class="section-inner">
-  <div class="ornament">♥</div><p class="eyebrow">We would love to celebrate with you</p><h2 class="section-title">Kindly RSVP</h2>
+  <div class="ornament">♥</div><h2 class="section-title">Kindly RSVP</h2>
   <p class="section-subtitle">Please let us know whether you can join us on our special day.</p>
   <!-- To collect real answers, publish this exact index.html to Netlify with Forms enabled. -->
   <form name="wedding-rsvp" id="rsvpForm" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/">
@@ -734,7 +749,7 @@ body.locked .site,body.letter-opening .site{animation:none;opacity:1;visibility:
   </form>
 </div></section>
 <section class="section blush" id="gifts" aria-labelledby="gifts-title"><div class="section-inner">
-  <div class="ornament" aria-hidden="true">♡</div><p class="eyebrow">A gift from the heart</p><h2 class="section-title" id="gifts-title">Your Presence Is Our Gift</h2>
+  <div class="ornament" aria-hidden="true">♡</div><h2 class="section-title" id="gifts-title">Your Presence Is Our Gift</h2>
   <p class="section-subtitle">Celebrating with you is the greatest gift we could ask for. Please do not feel any obligation to give anything more.</p>
   <article class="info-card contribution-card">
     <span class="card-tag">For those who wish</span><h3>A little contribution</h3>
@@ -751,12 +766,12 @@ body.locked .site,body.letter-opening .site{animation:none;opacity:1;visibility:
   </article>
 </div></section>
 <section class="section pale" id="questions"><div class="section-inner">
-  <div class="ornament">✿</div><p class="eyebrow">Good to know</p><h2 class="section-title">Frequently Asked Questions</h2>
+  <div class="ornament">✿</div><h2 class="section-title">Frequently Asked Questions</h2>
   <div class="faq"><details><summary>When is the wedding?</summary><p>Saturday, 24 July 2027. The religious ceremony begins at 14:30.</p></details><details><summary>Where will the wedding take place?</summary><p>Both the religious ceremony and reception will be held at La Ferme Bertinchamps d’Ophain, Chemin Bertinchamps 51, 1421 Ophain (Braine-l’Alleud), Belgium. <a href="https://maps.app.goo.gl/yGgFADK6HEWkgxyb7" target="_blank" rel="noopener noreferrer">Get directions</a>.</p></details><details><summary>What is the schedule?</summary><p>The ceremony starts at 14:30, followed by welcome drinks at 16:00, dinner and dancing. See the full schedule above.</p></details><details><summary>Is there a dress code?</summary><p>Dress code details will be announced later. The invitation colours reflect our wedding decorations.</p></details><details><summary>How do I RSVP?</summary><p>Please complete the RSVP form below. To collect your responses, the website must first be published with form submissions enabled.</p></details></div>
 </div></section>
 
 <section class="section white countdown-feature" id="countdown"><div class="countdown-layout"><figure class="countdown-photo"><img src="images/countdown-ring.jpg" alt="The engagement ring as Bénédicte holds Larry close" width="1200" height="1800" loading="lazy"><figcaption class="ring-verse"><blockquote>&ldquo;Therefore what God has joined together, let no one separate.&rdquo;</blockquote><cite>Matthew 19:6 · NIV</cite></figcaption></figure><div class="section-inner countdown-copy">
-  <div class="ornament">💍</div><p class="eyebrow">The countdown begins</p><h2 class="section-title">Until our big day</h2>
+  <div class="ornament">💍</div><h2 class="section-title">Until our big day</h2>
   <p class="section-subtitle">Every day brings us closer to celebrating with the people we love.</p>
   <div class="count-grid" role="timer" aria-label="Time remaining until 24 July 2027 at 14:30"><div><strong id="days">—</strong><span>Days</span></div><div><strong id="hours">—</strong><span>Hours</span></div><div><strong id="minutes">—</strong><span>Minutes</span></div><div><strong id="seconds">—</strong><span>Seconds</span></div></div>
 </div></div></section>
@@ -767,6 +782,38 @@ body.locked .site,body.letter-opening .site{animation:none;opacity:1;visibility:
 <script>
 (function(){
 'use strict';
+// The homepage slideshow starts only once the envelope has been removed.
+const slideshowPhotos=["images/slideshow/DSC09103.jpg","images/slideshow/DSC09118.jpg","images/slideshow/DSC09126.jpg","images/slideshow/DSC09138.jpg","images/slideshow/DSC09178.jpg","images/slideshow/DSC09186.jpg","images/slideshow/DSC09198.jpg","images/slideshow/DSC09203.jpg","images/slideshow/DSC09210.jpg","images/slideshow/DSC09246.jpg","images/slideshow/DSC09254.jpg","images/slideshow/DSC09265.jpg","images/slideshow/DSC09286.jpg","images/slideshow/DSC09292.jpg","images/slideshow/DSC09299.jpg","images/slideshow/DSC09310.jpg","images/slideshow/DSC09322.jpg","images/slideshow/DSC09331.jpg","images/slideshow/DSC09335.jpg","images/slideshow/DSC09345.jpg"];
+const homeSlides=[document.getElementById('homeSlideA'),document.getElementById('homeSlideB')];
+const firstHomePhoto=matchMedia('(max-width:650px)').matches?'images/slideshow/DSC09265.jpg':'images/slideshow/DSC09310.jpg';
+homeSlides[0].src=firstHomePhoto;
+let homePhotoIndex=slideshowPhotos.indexOf(firstHomePhoto),activeHomeSlide=0,homeSlideTimer=null,homeSlideVisible=true,homeSlideLoading=false;
+function preloadHomePhoto(){const next=new Image();next.src=slideshowPhotos[(homePhotoIndex+1)%slideshowPhotos.length];}
+async function nextHomePhoto(){
+  if(homeSlideLoading)return;
+  homeSlideLoading=true;
+  const nextIndex=(homePhotoIndex+1)%slideshowPhotos.length;
+  const target=homeSlides[1-activeHomeSlide];
+  target.src=slideshowPhotos[nextIndex];
+  try{
+    await target.decode();
+    if(document.body.classList.contains('locked')||document.hidden||!homeSlideVisible)return;
+    target.classList.add('is-visible');target.alt='Bénédicte and Larry';target.removeAttribute('aria-hidden');
+    homeSlides[activeHomeSlide].classList.remove('is-visible');homeSlides[activeHomeSlide].alt='';homeSlides[activeHomeSlide].setAttribute('aria-hidden','true');
+    activeHomeSlide=1-activeHomeSlide;homePhotoIndex=nextIndex;
+    preloadHomePhoto();
+  }catch{homePhotoIndex=nextIndex;}finally{homeSlideLoading=false;}
+}
+function updateHomeSlideshow(){
+  clearInterval(homeSlideTimer);
+  if(!document.body.classList.contains('locked')&&!document.hidden&&homeSlideVisible){
+    preloadHomePhoto();homeSlideTimer=setInterval(nextHomePhoto,4500);
+  }
+}
+new MutationObserver(updateHomeSlideshow).observe(document.body,{attributes:true,attributeFilter:['class']});
+document.addEventListener('visibilitychange',updateHomeSlideshow);
+if('IntersectionObserver' in window){new IntersectionObserver(entries=>{homeSlideVisible=entries[0].isIntersecting;updateHomeSlideshow();},{threshold:0}).observe(document.getElementById('top'));}
+updateHomeSlideshow();
 // Show the RSVP shortcut after guests leave the opening photograph.
 const homePhoto=document.getElementById('top');
 if('IntersectionObserver' in window){
