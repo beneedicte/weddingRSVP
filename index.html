@@ -541,7 +541,7 @@ body.on-home-photo .floating-rsvp,body.locked .floating-rsvp{opacity:0;visibilit
 </div>
 <div class="site paper" id="invitation">
 <header class="hero photo-home" id="top">
-  <picture class="home-photo"><source media="(max-width: 650px)" srcset="DSC09265.jpg"><img src="DSC09310.jpg" alt="Bénédicte and Larry holding hands beneath an ornate pavilion" width="1600" height="1067" fetchpriority="high"></picture>
+  <picture class="home-photo"><source media="(max-width: 650px)" srcset="images/DSC09265.jpg"><img src="images/DSC09310.jpg" alt="Bénédicte and Larry holding hands beneath an ornate pavilion" width="1600" height="1067" fetchpriority="high"></picture>
   <div class="home-copy" tabindex="-1"><p class="hero-kicker">Together with our families, we are delighted to invite you to our wedding.</p><h1><span>Bénédicte</span><em>&amp;</em><span>Larry</span></h1><p class="hero-date">24 · 07 · 2027</p></div>
   <button class="vinyl-button" id="musicToggle" type="button" aria-pressed="false" aria-label="Play our wedding soundtrack" aria-expanded="false" aria-controls="weddingMusic"><span class="vinyl-disc" aria-hidden="true"><span>Click<br>to play</span></span><span class="vinyl-caption">Click to play music<br><strong id="selectedSongLabel">Play a song</strong></span></button>
   <aside class="music-panel" id="weddingMusic" aria-label="Wedding soundtrack" hidden><div class="music-panel-heading"><span id="musicTitle">Our soundtrack</span><button id="closeMusic" type="button" aria-label="Close music player and stop playback">×</button></div><audio id="weddingAudio" controls preload="none"></audio><p id="musicStatus" role="status" aria-live="polite"></p></aside>
@@ -633,7 +633,7 @@ body.on-home-photo .floating-rsvp,body.locked .floating-rsvp{opacity:0;visibilit
     </div>
   </form>
 </div></section>
-<section class="section white countdown-feature" id="countdown"><div class="countdown-layout"><figure class="countdown-photo"><img src="countdown-ring.jpg" alt="The engagement ring as Bénédicte holds Larry close" width="1200" height="1800" loading="lazy"><figcaption class="ring-verse"><blockquote>&ldquo;Therefore what God has joined together, let no one separate.&rdquo;</blockquote><cite>Matthew 19:6 · NIV</cite></figcaption></figure><div class="section-inner countdown-copy">
+<section class="section white countdown-feature" id="countdown"><div class="countdown-layout"><figure class="countdown-photo"><img src="images/countdown-ring.jpg" alt="The engagement ring as Bénédicte holds Larry close" width="1200" height="1800" loading="lazy"><figcaption class="ring-verse"><blockquote>&ldquo;Therefore what God has joined together, let no one separate.&rdquo;</blockquote><cite>Matthew 19:6 · NIV</cite></figcaption></figure><div class="section-inner countdown-copy">
   <div class="ornament">💍</div><p class="eyebrow">The countdown begins</p><h2 class="section-title">Until our big day</h2>
   <p class="section-subtitle">Every day brings us closer to celebrating with the people we love.</p>
   <div class="count-grid" role="timer" aria-label="Time remaining until 24 July 2027 at 14:30"><div><strong id="days">—</strong><span>Days</span></div><div><strong id="hours">—</strong><span>Hours</span></div><div><strong id="minutes">—</strong><span>Minutes</span></div><div><strong id="seconds">—</strong><span>Seconds</span></div></div>
@@ -658,8 +658,9 @@ if('IntersectionObserver' in window){
 }
 const musicToggle=document.getElementById('musicToggle'),musicPanel=document.getElementById('weddingMusic'),weddingAudio=document.getElementById('weddingAudio');
 const weddingSongs=[
-  {title:'These Words',artist:'Natasha Bedingfield',src:'these-words.mp3'},
-  {title:'African Queen',artist:'2Face',src:'african-queen.mp3'}
+  {title:'These Words',artist:'Natasha Bedingfield',src:'music/these-words.mp3'},
+  {title:'African Queen',artist:'2Face',src:'music/2Face - African Queen.mp3'},
+  {title:'Die With a Smile',artist:'Lady Gaga & Bruno Mars',src:'music/Lady Gaga, Bruno Mars - Die With A Smile (Official Music Video) - LadyGagaVEVO.mp3'}
 ];
 const selectedSong=weddingSongs[Math.floor(Math.random()*weddingSongs.length)];
 weddingAudio.src=selectedSong.src;
