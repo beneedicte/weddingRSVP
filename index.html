@@ -513,6 +513,36 @@ body.on-home-photo .floating-rsvp,body.locked .floating-rsvp{opacity:0;visibilit
 .timeline-emoji{display:inline-block;font:normal .76em/1.3 'Segoe UI Emoji','Apple Color Emoji',sans-serif;vertical-align:.05em;margin-right:.18em}
 /* Match timeline symbols to the invitation's muted sage palette. */
 .timeline-emoji{filter:grayscale(1) brightness(.55) sepia(1) saturate(.65) hue-rotate(35deg);opacity:.88}
+.envelope-surname{display:block;font-size:.44em;letter-spacing:.12em;line-height:1.6}
+.welcome-heading h1{font-size:clamp(27px,4.6vh,43px)}
+.welcome-heading h1 em{margin:0;line-height:1}
+.welcome-heading time{margin-top:8px}
+/* A separate caption area keeps the verse completely off the hand and ring. */
+.countdown-photo{display:flex;flex-direction:column;background:#27342e}
+.countdown-photo img{height:auto;flex:1;min-height:0;object-fit:cover}
+.ring-verse{position:static;inset:auto;flex:none;background:#27342e;padding:16px 20px 18px}
+.ring-verse blockquote{font-size:14px;max-width:38ch;text-shadow:none}
+.guest-names-note{font:13px/1.7 var(--sans);color:#777c6c;margin:0 0 18px}
+#additionalGuests{padding:20px 0 0;border-top:1px solid var(--border);margin-bottom:20px}
+@media(max-width:700px){.countdown-photo{height:auto;min-height:0}.countdown-photo img{flex:none;width:100%;height:340px;object-position:center 55%}.ring-verse{padding:13px 18px}.ring-verse blockquote{font-size:14px}}
+@media(max-height:600px){.welcome-heading h1{font-size:25px}.envelope-surname{line-height:1.2}.welcome-heading time{font-size:10px}}
+.location-card .ceremony-parking{margin:24px 0 0;padding-top:20px;border-top:1px solid var(--border);font:12px/1.7 var(--sans);color:#63705b}
+.event-line-icon{display:inline-block;width:38px;height:38px;color:var(--sage);vertical-align:middle;flex-shrink:0;margin-right:8px}
+.venue-times .event-line-icon{width:44px;height:44px;margin:0 auto 6px}
+.venue-times{grid-template-columns:repeat(3,minmax(0,1fr));max-width:560px}
+@media(max-width:520px){.venue-times{grid-template-columns:1fr}.venue-times .event-line-icon{width:38px;height:38px}}
+/* One consistent column of line-art markers, replacing timeline dots. */
+.timetable{max-width:620px;margin:40px auto 12px;padding:0;border:0}
+.timeline-item{display:grid;grid-template-columns:60px minmax(0,1fr);column-gap:22px;position:relative;padding:0 0 32px}
+.timeline-item:before{display:none;content:none}
+.timeline-item:after{content:'';position:absolute;left:30px;top:59px;bottom:6px;width:1px;background:#b78e4e44}
+.timeline-item:last-child:after{display:none}
+.timeline-symbol{width:60px;height:60px;display:grid;place-items:center;background:#fffdf8;position:relative;z-index:1}
+.timeline-symbol .event-line-icon{width:48px;height:48px;margin:0;color:var(--sage);vertical-align:initial}
+.timeline-content{min-width:0;padding-top:3px}
+.timeline-content h3{margin:4px 0 8px;font:500 clamp(23px,3.6vw,30px)/1.25 var(--serif);text-wrap:balance}
+.timeline-content time.tag{margin:0;font-size:12px;line-height:1.6}
+@media(max-width:480px){.timeline-item{grid-template-columns:46px minmax(0,1fr);column-gap:15px;padding-bottom:28px}.timeline-symbol{width:46px;height:54px}.timeline-symbol .event-line-icon{width:41px;height:41px}.timeline-item:after{left:23px;top:54px}.timeline-content h3{font-size:24px}}
 </style>
 </head>
 <body class="locked">
@@ -524,7 +554,7 @@ body.on-home-photo .floating-rsvp,body.locked .floating-rsvp{opacity:0;visibilit
     <div class="welcome-fold welcome-fold-bottom" aria-hidden="true"></div>
     <div class="welcome-fold welcome-fold-top" aria-hidden="true"></div>
     <div class="welcome-flowers" aria-hidden="true"><span class="welcome-flower a"></span><span class="welcome-flower b"></span><span class="welcome-flower c"></span><span class="welcome-flower d"></span><span class="welcome-flower e"></span><span class="welcome-flower f"></span><span class="welcome-flower g"></span></div>
-    <div class="welcome-heading"><p>You are invited<br>to the wedding of</p><h1>Bénédicte<em>&amp;</em>Larry</h1><time datetime="2027-07-24">24 · 07 · 2027</time></div>
+    <div class="welcome-heading"><p>You are invited<br>to the wedding of</p><h1>Bénédicte <span class="envelope-surname">Mbatso</span><em>&amp;</em>Larry <span class="envelope-surname">Jeremiah</span></h1><time datetime="2027-07-24">24 · 07 · 2027</time></div>
     <div class="seal-magic" aria-hidden="true"></div>
     <button id="openLetter" class="wax-open" type="button" aria-label="Break the wax seal and open the wedding invitation">
       <span class="wax-seal" aria-hidden="true"><svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -556,23 +586,23 @@ body.on-home-photo .floating-rsvp,body.locked .floating-rsvp{opacity:0;visibilit
   <div class="mini-grid wedding-venues one-location"><article class="info-card location-card">
     <span class="card-tag">One beautiful location</span><h3>La Ferme Bertinchamps d’Ophain</h3>
     <p class="venue-address">Chemin Bertinchamps 51<br>1421 Ophain (Braine-l’Alleud)<br>Belgium</p>
-    <div class="venue-times"><div><span class="venue-time">14:30</span><span>Religious ceremony</span></div><div><span class="venue-time">16:00</span><span>Welcome drinks</span></div></div>
+    <div class="venue-times"><div><svg class="event-line-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M24 3v9m-4-5h8M14 23l10-12 10 12v21H14ZM5 44V29l9-7m29 22V29l-9-7M2 44h44M20 44V33a4 4 0 0 1 8 0v11M21 23a3 3 0 1 0 6 0 3 3 0 0 0-6 0ZM8 34v5m32-5v5"/></svg><span class="venue-time">14:30</span><span>Religious ceremony</span></div><div><svg class="event-line-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g transform="rotate(18 14 24)"><path d="M8 7h12l-1 14a5 5 0 0 1-10 0ZM9 15h10M14 26v15m-6 0h12"/></g><g transform="rotate(-18 34 24)"><path d="M28 7h12l-1 14a5 5 0 0 1-10 0ZM29 15h10M34 26v15m-6 0h12"/></g><path d="M24 2v4m-5-3 2 3m8-3-2 3"/></svg><span class="venue-time">16:00</span><span>Welcome drinks</span></div><div><svg class="event-line-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="25" cy="24" r="15"/><circle cx="25" cy="24" r="11"/><path d="M4 7v12q0 4 3 4V42M7 7v12M10 7v12q0 4-3 4M44 7q-5 7-4 18h4V7Zm0 18v17"/></svg><span class="venue-time">19:20</span><span>Dinner is served</span></div></div>
     <a class="btn outline" href="https://maps.app.goo.gl/yGgFADK6HEWkgxyb7" target="_blank" rel="noopener noreferrer">Get directions on Google Maps ↗</a>
-  </article></div>
+  <p class="ceremony-parking"><strong>Parking on site</strong><br>Parking areas are available for guests.</p></article></div>
   <div style="text-align:center;margin-top:22px"><button class="btn outline" type="button" id="calendar">Add to Calendar</button></div>
 </div></section>
 <section class="section white" id="schedule"><div class="section-inner">
   <div class="ornament">✽</div><p class="eyebrow">Saturday, 24 July 2027</p><h2 class="section-title">Wedding Day Schedule</h2>
   <p class="section-subtitle">From the ceremony to the dance floor, here is the day we look forward to sharing with you.</p>
   <div class="timetable" aria-label="Wedding day itinerary">
-    <div class="timeline-item"><time class="tag" datetime="2027-07-24T14:30:00+02:00">14:30</time><h3><span class="timeline-emoji" aria-hidden="true">⛪</span> Religious ceremony</h3></div>
-    <div class="timeline-item"><time class="tag" datetime="2027-07-24T16:00:00+02:00">16:00</time><h3><span class="timeline-emoji" aria-hidden="true">🥂</span> Welcome drinks · Cocktail hour</h3></div>
-    <div class="timeline-item"><time class="tag" datetime="2027-07-24T18:15:00+02:00">18:15</time><h3><span class="timeline-emoji" aria-hidden="true">🚪</span> Guests enter the reception hall</h3></div>
-    <div class="timeline-item"><time class="tag" datetime="2027-07-24T19:00:00+02:00">19:00</time><h3><span class="timeline-emoji" aria-hidden="true">💍</span> Newlyweds’ entrance</h3></div>
-    <div class="timeline-item"><time class="tag" datetime="2027-07-24T19:20:00+02:00">19:20</time><h3><span class="timeline-emoji" aria-hidden="true">🍽</span> Dinner is served</h3></div>
-    <div class="timeline-item"><time class="tag" datetime="2027-07-24T21:45:00+02:00">21:45</time><h3><span class="timeline-emoji" aria-hidden="true">💕</span> First dance</h3></div>
-    <div class="timeline-item"><time class="tag" datetime="2027-07-24T21:50:00+02:00">21:50</time><h3><span class="timeline-emoji" aria-hidden="true">💃</span> Dance floor opens</h3></div>
-    <div class="timeline-item"><time class="tag" datetime="2027-07-24T22:30:00+02:00">22:30</time><h3><span class="timeline-emoji" aria-hidden="true">🎂</span> Wedding cake</h3></div>
+    <div class="timeline-item"><div class="timeline-symbol"><svg class="event-line-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M24 3v9m-4-5h8M14 23l10-12 10 12v21H14ZM5 44V29l9-7m29 22V29l-9-7M2 44h44M20 44V33a4 4 0 0 1 8 0v11M21 23a3 3 0 1 0 6 0 3 3 0 0 0-6 0ZM8 34v5m32-5v5"/></svg></div><div class="timeline-content"><time class="tag" datetime="2027-07-24T14:30:00+02:00">14:30</time><h3>Religious ceremony</h3></div></div>
+    <div class="timeline-item"><div class="timeline-symbol"><svg class="event-line-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g transform="rotate(18 14 24)"><path d="M8 7h12l-1 14a5 5 0 0 1-10 0ZM9 15h10M14 26v15m-6 0h12"/></g><g transform="rotate(-18 34 24)"><path d="M28 7h12l-1 14a5 5 0 0 1-10 0ZM29 15h10M34 26v15m-6 0h12"/></g><path d="M24 2v4m-5-3 2 3m8-3-2 3"/></svg></div><div class="timeline-content"><time class="tag" datetime="2027-07-24T16:00:00+02:00">16:00</time><h3>Welcome drinks · Cocktail hour</h3></div></div>
+    <div class="timeline-item"><div class="timeline-symbol"><svg class="event-line-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 25 12 7q12-7 24 0l-3 18M17 25l-1-15q8-3 16 0l-1 15M10 29q14-8 28 0v5H10Zm4 5-3 11m23-11 3 11M17 34v10m14-10v10"/></svg></div><div class="timeline-content"><time class="tag" datetime="2027-07-24T18:15:00+02:00">18:15</time><h3>Guests enter the reception hall</h3></div></div>
+    <div class="timeline-item"><div class="timeline-symbol"><svg class="event-line-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="16" cy="8" r="4"/><circle cx="31" cy="8" r="4"/><path d="M11 15h10l3 15-5 1-1 14m-4-14 1 14M11 15 7 28l5 3 1-12m12 10 3-14h7l4 17 5 12H24l4-13m1-14-7 6"/></svg></div><div class="timeline-content"><time class="tag" datetime="2027-07-24T19:00:00+02:00">19:00</time><h3>Newlyweds’ entrance</h3></div></div>
+    <div class="timeline-item"><div class="timeline-symbol"><svg class="event-line-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="25" cy="24" r="15"/><circle cx="25" cy="24" r="11"/><path d="M4 7v12q0 4 3 4V42M7 7v12M10 7v12q0 4-3 4M44 7q-5 7-4 18h4V7Zm0 18v17"/></svg></div><div class="timeline-content"><time class="tag" datetime="2027-07-24T19:20:00+02:00">19:20</time><h3>Dinner is served</h3></div></div>
+    <div class="timeline-item"><div class="timeline-symbol"><svg class="event-line-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 10 8-5v25m0-19 12-4v20M18 10v23"/><ellipse cx="13" cy="34" rx="5" ry="4"/><ellipse cx="33" cy="28" rx="5" ry="4"/></svg></div><div class="timeline-content"><time class="tag" datetime="2027-07-24T21:45:00+02:00">21:45</time><h3>First dance</h3></div></div>
+    <div class="timeline-item"><div class="timeline-symbol"><svg class="event-line-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 30h34v13H7Zm0 6h34M18 30v13m12-13v13M12 22l5-8 7 4 6-7 7 5M24 4v5m-9-4 2 4m16-4-2 4"/><circle cx="24" cy="14" r="3"/></svg></div><div class="timeline-content"><time class="tag" datetime="2027-07-24T21:50:00+02:00">21:50</time><h3>Dance floor opens</h3></div></div>
+    <div class="timeline-item"><div class="timeline-symbol"><svg class="event-line-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 43h32M11 43V29h26v14M15 29V18h18v11M11 33q4 6 8 0 5 6 10 0 4 6 8 0M15 22q4 5 9 0 5 5 9 0M24 18v-7M24 11q-6-4 0-9 6 5 0 9Z"/></svg></div><div class="timeline-content"><time class="tag" datetime="2027-07-24T22:30:00+02:00">22:30</time><h3>Wedding cake</h3></div></div>
   </div>
   <div style="text-align:center;margin-top:18px"><a class="btn" href="#rsvp">RSVP Now ♡</a></div>
 </div></section>
@@ -583,7 +613,7 @@ body.on-home-photo .floating-rsvp,body.locked .floating-rsvp{opacity:0;visibilit
   <p class="small-note"><strong>Dress code:</strong>These are our wedding decoration colours, not a required dress code for guests.</p>
 </div></section>
 <section class="section white" id="accommodation"><div class="section-inner travel-inner">
-  <div class="ornament" aria-hidden="true">❦</div><p class="eyebrow">Plan your visit</p><h2 class="section-title">Getting There</h2>
+  <div class="ornament" aria-hidden="true">❦</div><h2 class="section-title">Getting There</h2>
   <p class="section-subtitle">One beautiful place for the ceremony, reception and everything in between.</p>
   <article class="travel-card">
     <div class="travel-pin" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M38 20c0 11-14 23-14 23S10 31 10 20a14 14 0 1 1 28 0Z"/><circle cx="24" cy="19" r="5"/></svg></div>
@@ -592,6 +622,27 @@ body.on-home-photo .floating-rsvp,body.locked .floating-rsvp{opacity:0;visibilit
     <a class="btn travel-directions" target="_blank" rel="noopener noreferrer" href="https://maps.app.goo.gl/yGgFADK6HEWkgxyb7">Open directions in Google Maps <span aria-hidden="true">↗</span></a>
     <div class="travel-parking"><span aria-hidden="true">P</span><p><strong>Parking on site</strong><br>Parking areas are available for guests.</p></div>
   </article>
+</div></section>
+<section class="section blush" id="rsvp"><div class="section-inner">
+  <div class="ornament">♥</div><p class="eyebrow">We would love to celebrate with you</p><h2 class="section-title">Kindly RSVP</h2>
+  <p class="section-subtitle">Please let us know whether you can join us on our special day.</p>
+  <!-- To collect real answers, publish this exact index.html to Netlify with Forms enabled. -->
+  <form name="wedding-rsvp" id="rsvpForm" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/">
+    <input type="hidden" name="form-name" value="wedding-rsvp">
+    <p hidden><label>Leave this blank <input name="bot-field"></label></p>
+    <div class="rsvp-wrap">
+      <div class="field"><label for="guestTitle">Title</label><select id="guestTitle" name="title" autocomplete="honorific-prefix"><option value="">Select your title</option><option value="Mr">Mr</option><option value="Mrs">Mrs</option></select></div>
+      <div class="field"><label for="guestName">Full name *</label><input id="guestName" name="full_name" type="text" required autocomplete="name" placeholder="Your first and last name"></div>
+      <div class="field"><label>Will you attend? *</label><div class="choices"><label class="choice"><input required type="radio" name="attending" value="Yes"> Joyfully accepts</label><label class="choice"><input required type="radio" name="attending" value="No"> Regretfully declines</label></div></div>
+      <div class="field" id="guestCountField"><label for="guestCount">Number of guests, including yourself</label><select id="guestCount" name="number_of_attendees"><option value="1">1 person</option><option value="2">2 people</option><option value="3">3 people</option><option value="4">4 people</option><option value="5">5 people</option><option value="6">6 people</option><option value="7">7 people</option><option value="8">8 people</option><option value="9">9 people</option><option value="10">10 people</option></select></div>
+      <div id="additionalGuests" hidden><p class="guest-names-note">Your name is already included. Please add the full name of each person joining you.</p><div id="guestNameFields"></div></div>
+      <input type="hidden" name="additional_guest_names" id="additionalGuestNames" value="">
+      <div class="field"><label for="guestNotes">Dietary requirements or a message (optional)</label><textarea id="guestNotes" name="message" placeholder="Allergies, dietary restrictions"></textarea></div>
+      <button class="btn submit" type="submit" id="submitBtn">Send My RSVP ♡</button>
+      <div id="formMessage" class="form-message" role="status" aria-live="polite"></div>
+      <p class="safe-note">RSVPs can only be received once this website is published with form collection enabled. This preview does not submit responses.</p>
+    </div>
+  </form>
 </div></section>
 <section class="section blush" id="gifts" aria-labelledby="gifts-title"><div class="section-inner">
   <div class="ornament" aria-hidden="true">♡</div><p class="eyebrow">A gift from the heart</p><h2 class="section-title" id="gifts-title">Your Presence Is Our Gift</h2>
@@ -614,25 +665,7 @@ body.on-home-photo .floating-rsvp,body.locked .floating-rsvp{opacity:0;visibilit
   <div class="ornament">✿</div><p class="eyebrow">Good to know</p><h2 class="section-title">Frequently Asked Questions</h2>
   <div class="faq"><details><summary>When is the wedding?</summary><p>Saturday, 24 July 2027. The religious ceremony begins at 14:30.</p></details><details><summary>Where will the wedding take place?</summary><p>Both the religious ceremony and reception will be held at La Ferme Bertinchamps d’Ophain, Chemin Bertinchamps 51, 1421 Ophain (Braine-l’Alleud), Belgium. <a href="https://maps.app.goo.gl/yGgFADK6HEWkgxyb7" target="_blank" rel="noopener noreferrer">Get directions</a>.</p></details><details><summary>What is the schedule?</summary><p>The ceremony starts at 14:30, followed by welcome drinks at 16:00, dinner and dancing. See the full schedule above.</p></details><details><summary>Is there a dress code?</summary><p>Dress code details will be announced later. The invitation colours reflect our wedding decorations.</p></details><details><summary>How do I RSVP?</summary><p>Please complete the RSVP form below. To collect your responses, the website must first be published with form submissions enabled.</p></details></div>
 </div></section>
-<section class="section blush" id="rsvp"><div class="section-inner">
-  <div class="ornament">♥</div><p class="eyebrow">We would love to celebrate with you</p><h2 class="section-title">Kindly RSVP</h2>
-  <p class="section-subtitle">Please let us know whether you can join us on our special day.</p>
-  <!-- To collect real answers, publish this exact index.html to Netlify with Forms enabled. -->
-  <form name="wedding-rsvp" id="rsvpForm" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/">
-    <input type="hidden" name="form-name" value="wedding-rsvp">
-    <p hidden><label>Leave this blank <input name="bot-field"></label></p>
-    <div class="rsvp-wrap">
-      <div class="field"><label for="guestTitle">Title</label><select id="guestTitle" name="title" autocomplete="honorific-prefix"><option value="">Select your title</option><option value="Mr">Mr</option><option value="Mrs">Mrs</option></select></div>
-      <div class="field"><label for="guestName">Full name *</label><input id="guestName" name="full_name" type="text" required autocomplete="name" placeholder="Your first and last name"></div>
-      <div class="field"><label>Will you attend? *</label><div class="choices"><label class="choice"><input required type="radio" name="attending" value="Yes"> Joyfully accepts</label><label class="choice"><input required type="radio" name="attending" value="No"> Regretfully declines</label></div></div>
-      <div class="field" id="guestCountField"><label for="guestCount">Number of guests included in this RSVP </label><select id="guestCount" name="number_of_attendees"><option value="1">1 person</option><option value="2">2 people</option></select></div>
-      <div class="field"><label for="guestNotes">Dietary requirements or a message (optional)</label><textarea id="guestNotes" name="message" placeholder="Allergies, dietary restrictions"></textarea></div>
-      <button class="btn submit" type="submit" id="submitBtn">Send My RSVP ♡</button>
-      <div id="formMessage" class="form-message" role="status" aria-live="polite"></div>
-      <p class="safe-note">RSVPs can only be received once this website is published with form collection enabled. This preview does not submit responses.</p>
-    </div>
-  </form>
-</div></section>
+
 <section class="section white countdown-feature" id="countdown"><div class="countdown-layout"><figure class="countdown-photo"><img src="images/countdown-ring.jpg" alt="The engagement ring as Bénédicte holds Larry close" width="1200" height="1800" loading="lazy"><figcaption class="ring-verse"><blockquote>&ldquo;Therefore what God has joined together, let no one separate.&rdquo;</blockquote><cite>Matthew 19:6 · NIV</cite></figcaption></figure><div class="section-inner countdown-copy">
   <div class="ornament">💍</div><p class="eyebrow">The countdown begins</p><h2 class="section-title">Until our big day</h2>
   <p class="section-subtitle">Every day brings us closer to celebrating with the people we love.</p>
@@ -744,6 +777,35 @@ document.getElementById('calendar').addEventListener('click',()=>{const txt=['BE
 // RSVP: Netlify Forms accepts submissions only after the website is published there.
 const form=document.getElementById('rsvpForm'),feedback=document.getElementById('formMessage'),submit=document.getElementById('submitBtn'),guestCount=document.getElementById('guestCountField');
 form.querySelectorAll('input[name="attending"]').forEach(r=>r.addEventListener('change',()=>{const no=form.querySelector('[name="attending"]:checked')?.value==='No';guestCount.style.display=no?'none':'';form.querySelector('#guestCount').disabled=no}));
+// Keep every companion's name with the RSVP in the declared Netlify field.
+const attendeeCount=document.getElementById('guestCount');
+const additionalGuests=document.getElementById('additionalGuests');
+const guestNameFields=document.getElementById('guestNameFields');
+const additionalGuestNames=document.getElementById('additionalGuestNames');
+const companionNames=[];
+function saveCompanionNames(){
+  guestNameFields.querySelectorAll('input').forEach((input,index)=>{companionNames[index]=input.value;});
+  additionalGuestNames.value=Array.from(guestNameFields.querySelectorAll('input')).filter(input=>!input.disabled).map(input=>input.value.trim()).join('; ');
+}
+function updateGuestNames(){
+  saveCompanionNames();
+  const declined=form.querySelector('[name="attending"]:checked')?.value==='No';
+  const total=declined?0:Math.max(0,Number(attendeeCount.value)-1);
+  additionalGuests.hidden=total===0;
+  guestNameFields.replaceChildren();
+  for(let i=0;i<total;i++){
+    const field=document.createElement('div');field.className='field';
+    const label=document.createElement('label');label.htmlFor='companion-'+i;label.textContent='Guest '+(i+2)+' full name *';
+    const input=document.createElement('input');input.id=label.htmlFor;input.type='text';input.required=true;input.autocomplete='off';input.placeholder='First and last name';input.value=companionNames[i]||'';
+    input.addEventListener('input',saveCompanionNames);
+    field.append(label,input);guestNameFields.append(field);
+  }
+  saveCompanionNames();
+}
+attendeeCount.addEventListener('change',updateGuestNames);
+form.querySelectorAll('[name="attending"]').forEach(input=>input.addEventListener('change',updateGuestNames));
+form.addEventListener('reset',()=>{companionNames.length=0;guestNameFields.replaceChildren();additionalGuestNames.value='';setTimeout(updateGuestNames,0);});
+updateGuestNames();
 function message(msg,kind){feedback.textContent=msg;feedback.className='form-message show '+kind}
 form.addEventListener('submit',async event=>{
  event.preventDefault();
