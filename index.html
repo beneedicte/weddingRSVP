@@ -569,6 +569,61 @@ body.on-home-photo .floating-rsvp,body.locked .floating-rsvp{opacity:0;visibilit
 .wax-gate.open .welcome-fold-top{filter:drop-shadow(0 12px 8px #695d4340)}
 @media(max-width:480px){.wax-stage{gap:10px;padding:18px 12px 20px}.welcome-heading{padding:8px 12px 12px}.welcome-heading p{font-size:9px}.welcome-action{width:min(90%,420px)}.wax-hint{font-size:9px;letter-spacing:.08em}}
 @media(max-height:600px){.wax-stage{grid-template-rows:auto minmax(100px,1fr) auto auto;min-height:510px;gap:8px;padding-block:12px}.welcome-heading p{margin-bottom:7px}.welcome-heading h1{font-size:27px}.welcome-heading h1 em{font-size:20px;margin:1px 0}.welcome-heading time{margin-top:7px}.welcome-action{min-height:45px;padding:11px 16px}}
+/* Approved sequence: lift seal, unfold flap, show page inside, slide pocket away. */
+.wax-gate{background:transparent;perspective:1400px;overflow:hidden;isolation:isolate}
+.wax-stage{display:block;position:relative;isolation:isolate;width:100%;height:100dvh;min-height:0;padding:0;background:transparent;box-shadow:none;overflow:visible;transform:none;perspective:1400px}
+.wax-gate.open{animation:none;opacity:1;background:transparent;pointer-events:none}
+body.locked .site,body.letter-opening .site{animation:none;opacity:1;visibility:visible;transform:none;box-shadow:none;will-change:auto}
+.envelope-front-pocket,.welcome-fold-top{position:absolute;inset:0;background:#f6f3e9 url('images/ivory-embossed-paper.png') center/cover no-repeat}
+.envelope-front-pocket{z-index:3;clip-path:polygon(0 24%,50% 58%,100% 24%,100% 100%,0 100%);filter:drop-shadow(0 -4px 5px #695d4340);pointer-events:none}
+.welcome-fold-top{display:block!important;z-index:4;clip-path:polygon(0 0,100% 0,100% 25%,50% 59%,0 25%);transform-origin:50% 0;backface-visibility:hidden;transform:rotateX(0);opacity:1;transition:none;filter:drop-shadow(0 5px 5px #695d4345);will-change:transform}
+.welcome-heading{position:absolute;top:3%;left:50%;right:auto;transform:translateX(-50%);width:min(94%,600px);margin:0;padding:8px 16px 12px;pointer-events:none}
+.welcome-heading h1{font-size:clamp(25px,3.8vh,41px)}
+.welcome-heading p{margin-bottom:9px}.welcome-heading:before{margin-bottom:5px}
+.welcome-heading time{margin-top:8px;font-size:clamp(11px,1.55vh,15px)}
+.wax-open{position:absolute;top:58%;left:50%;transform:translate(-50%,-50%);margin:0;width:clamp(95px,15vh,145px);height:clamp(95px,15vh,145px);z-index:15}
+.welcome-action{position:absolute;top:auto;bottom:11%;left:50%;right:auto;transform:translateX(-50%);margin:0;width:min(85%,480px);z-index:16}
+.wax-hint{position:absolute;top:auto;bottom:3.5%;left:50%;right:auto;transform:translateX(-50%);width:max-content;max-width:92%;margin:0;text-align:center;z-index:16}
+.wax-gate.open .wax-stage{animation:approvedEnvelopeAway 1.3s cubic-bezier(.32,0,.24,1) 1.2s both;opacity:1;transform-origin:50% 100%}
+.wax-gate.open .welcome-fold-top{animation:approvedFlapOpen 1s cubic-bezier(.32,0,.2,1) .2s both;transition:none;opacity:1;filter:drop-shadow(0 8px 6px #695d4340)}
+.wax-gate.open .welcome-heading{opacity:1;transition:none}
+.wax-gate.open .wax-seal{animation:liftWaxSeal .45s ease both}
+.wax-gate.open .welcome-action,.wax-gate.open .wax-hint{visibility:hidden;opacity:0;transition:none}
+@keyframes approvedFlapOpen{0%{transform:rotateX(0)}100%{transform:rotateX(175deg)}}
+@keyframes approvedEnvelopeAway{0%{transform:translateY(0)}100%{transform:translateY(112dvh)}}
+@media(max-width:480px){.welcome-heading{top:3%;padding:5px 10px 10px}.welcome-heading p{font-size:9px}.welcome-action{bottom:12%;min-height:46px}.wax-hint{bottom:4%;font-size:9px;padding:8px 12px}}
+@media(max-height:550px){.welcome-heading{top:2%;padding-block:2px}.welcome-heading:before{display:none}.welcome-heading p{font-size:8px;line-height:1.4;margin-bottom:5px}.welcome-heading h1{font-size:21px}.welcome-heading h1 em{font-size:17px;margin:0}.envelope-surname{line-height:1.2}.welcome-heading time{font-size:10px;margin-top:5px}.wax-open{width:75px;height:75px}.welcome-action{bottom:11%;min-height:38px;padding:9px}.wax-hint{bottom:2%;font-size:8px;padding:5px 10px}}
+@media(prefers-reduced-motion:reduce){.wax-gate.open .wax-stage{animation:none!important;opacity:0;transition:none!important}.wax-gate.open .welcome-fold-top{animation:none!important;transform:none}}
+/* A visible triangular folded edge makes the closed state read as an envelope. */
+.envelope-flap-shadow{position:absolute;inset:0;z-index:4;pointer-events:none;filter:drop-shadow(0 3px 1px rgba(93,76,48,.28)) drop-shadow(0 10px 7px rgba(93,76,48,.23));perspective:1400px}
+.envelope-flap-shadow .welcome-fold-top{clip-path:polygon(0 0,100% 0,100% 15%,50% 60%,0 15%);filter:none;background-image:linear-gradient(160deg,#fffdf518,transparent 50%,#a48c6420),url('images/ivory-embossed-paper.png');background-size:100% 100%,cover;background-position:0 0,center;background-repeat:no-repeat}
+.envelope-front-pocket{clip-path:polygon(0 14%,50% 59%,100% 14%,100% 100%,0 100%);filter:none}
+.wax-open{top:60%}
+.wax-gate.open .envelope-flap-shadow .welcome-fold-top{filter:none}
+.wax-gate.open .envelope-flap-shadow{filter:drop-shadow(0 8px 7px rgba(93,76,48,.22))}
+/* Preserve the original ivory embossing; only the folded edge casts a shadow. */
+.envelope-flap-shadow .welcome-fold-top{background:#f6f3e9 url('images/ivory-embossed-paper.png') center/cover no-repeat;background-blend-mode:normal}
+.envelope-front-pocket{background:#f6f3e9 url('images/ivory-embossed-paper.png') center/cover no-repeat;background-blend-mode:normal}
+/* Avoid a pause between the flap opening and the pocket sliding away. */
+.wax-gate.open .wax-stage{will-change:transform;backface-visibility:hidden}
+.wax-gate.open .envelope-flap-shadow{filter:drop-shadow(0 3px 1px rgba(93,76,48,.28)) drop-shadow(0 10px 7px rgba(93,76,48,.23))}
+.wax-gate.open .envelope-flap-shadow .welcome-fold-top{transition:none;will-change:transform}
+@keyframes approvedEnvelopeAway{from{transform:translate3d(0,0,0)}to{transform:translate3d(0,112dvh,0)}}
+/* Mobile M and smaller: a rectangular envelope with a broader, shallower flap. */
+@media(max-width:375px){
+ .wax-gate{align-items:center;justify-content:center;background:#e8e5db}
+ .wax-stage{width:calc(100% - 16px);height:calc(100dvh - 24px);max-height:720px;min-height:0;border-radius:5px;box-shadow:0 8px 26px #33463822}
+ .envelope-front-pocket{clip-path:polygon(0 34%,50% 59%,100% 34%,100% 100%,0 100%);border-radius:5px}
+ .envelope-flap-shadow .welcome-fold-top{clip-path:polygon(0 0,100% 0,100% 35%,50% 60%,0 35%);border-radius:5px 5px 0 0}
+ .welcome-heading{top:2.5%}
+ .welcome-heading h1{font-size:clamp(23px,3.65vh,30px)}
+ .welcome-heading p{font-size:8px;letter-spacing:.16em}
+ .welcome-heading time{font-size:10px;letter-spacing:.2em}
+ .wax-open{width:clamp(88px,14vh,110px);height:clamp(88px,14vh,110px)}
+ .welcome-action{width:88%;font-size:9px;letter-spacing:.12em}
+ .wax-hint{font-size:8px;letter-spacing:.06em;max-width:94%}
+ .wax-gate.open{background:transparent}
+}
 </style>
 </head>
 <body class="locked">
@@ -577,10 +632,10 @@ body.on-home-photo .floating-rsvp,body.locked .floating-rsvp{opacity:0;visibilit
   <div class="wax-stage">
     <div class="welcome-fold welcome-fold-left" aria-hidden="true"></div>
     <div class="welcome-fold welcome-fold-right" aria-hidden="true"></div>
-    <div class="welcome-fold welcome-fold-bottom" aria-hidden="true"></div>
-    <div class="welcome-fold welcome-fold-top" aria-hidden="true"></div>
+    <div class="envelope-front-pocket" aria-hidden="true"></div>
+    <div class="envelope-flap-shadow"><div class="welcome-fold welcome-fold-top"><div class="welcome-heading"><p>You are invited<br>to the wedding of</p><h1>Bénédicte <span class="envelope-surname">Mbatso</span><em>&amp;</em>Larry <span class="envelope-surname">Jeremiah</span></h1><time datetime="2027-07-24">24 · 07 · 2027</time></div></div></div>
     <div class="welcome-flowers" aria-hidden="true"><span class="welcome-flower a"></span><span class="welcome-flower b"></span><span class="welcome-flower c"></span><span class="welcome-flower d"></span><span class="welcome-flower e"></span><span class="welcome-flower f"></span><span class="welcome-flower g"></span></div>
-    <div class="welcome-heading"><p>You are invited<br>to the wedding of</p><h1>Bénédicte <span class="envelope-surname">Mbatso</span><em>&amp;</em>Larry <span class="envelope-surname">Jeremiah</span></h1><time datetime="2027-07-24">24 · 07 · 2027</time></div>
+
     <div class="seal-magic" aria-hidden="true"></div>
     <button id="openLetter" class="wax-open" type="button" aria-label="Break the wax seal and open the wedding invitation">
       <span class="wax-seal" aria-hidden="true"><svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -780,7 +835,7 @@ function openInvitation(){
     gate.remove();
     document.body.classList.remove('locked','letter-opening');
     document.querySelector('.home-copy').focus({preventScroll:true});
-  },2700);
+  },2500);
 }
 openBtn.addEventListener('click',openInvitation);
 document.getElementById('openInvitationButton').addEventListener('click',()=>{
